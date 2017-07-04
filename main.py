@@ -21,11 +21,13 @@ import base64
 import json
 import logging
 import re
+import requests
 import urllib
 
 from apiclient import errors
 from google.appengine.api import memcache
 from google.appengine.ext import ndb
+from xml.etree import ElementTree
 
 import jinja2
 
@@ -152,8 +154,12 @@ class ReceiveMessage(webapp2.RequestHandler):
 
         # Store the message in the datastore.
         logging.debug('Post body: {}'.format(self.request.body))
-        message = json.loads(urllib.unquote(self.request.body).rstrip('='))
-        message_body = base64.b64decode(str(message['message']['data']))
+        #response = self.request.body;
+        #message_body = ElementTree.fromstring(response.content);
+        #message = json.loads(urllib.unquote(self.request.body).rstrip('='))
+        #message_body = base64.b64decode(str(message['message']['data']))
+        message = self.request.body
+        message_body = str(message['message']['data'])
         pubsub_message = PubSubMessage(message=message_body)
         pubsub_message.put()
 
