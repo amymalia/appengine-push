@@ -21,13 +21,11 @@ import base64
 import json
 import logging
 import re
-import requests
 import urllib
 
 from apiclient import errors
 from google.appengine.api import memcache
 from google.appengine.ext import ndb
-from xml.etree import ElementTree
 
 import jinja2
 
