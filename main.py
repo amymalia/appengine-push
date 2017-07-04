@@ -151,10 +151,10 @@ class ReceiveMessage(webapp2.RequestHandler):
             return
 
         # Store the message in the datastore.
-        # logging.debug('Post body: {}'.format(self.request.body))
-        # message = json.loads(urllib.unquote(self.request.body).rstrip('='))
-        #message_body = base64.b64decode(str(message['message']['data']))
-        pubsub_message = PubSubMessage(message='sup?')
+        logging.debug('Post body: {}'.format(self.request.body))
+        message = json.loads(urllib.unquote(self.request.body).rstrip('='))
+        message_body = base64.b64decode(str(message['message']['data']))
+        pubsub_message = PubSubMessage(message=message_body)
         pubsub_message.put()
 
         # Invalidate the cache
