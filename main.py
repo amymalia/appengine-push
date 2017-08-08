@@ -153,7 +153,6 @@ class ReceiveMessage(webapp2.RequestHandler):
         # Store the message in the datastore.
         logging.debug('Post body: {}'.format(self.request.body))
         #response = self.request.body;
-        #message_body = ElementTree.fromstring(response.content);
         #message = json.loads(urllib.unquote(self.request.body).rstrip('='))
         #message_body = base64.b64decode(str(message['message']['data']))
         message_body = self.request.body
